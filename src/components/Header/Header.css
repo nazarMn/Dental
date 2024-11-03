@@ -7,12 +7,13 @@
 .header{
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    width: 1175px;
-    height: 60px;
-    background-color: red;
+    justify-content: space-between;
+    width: 59.34%;
+    height: 7.77%;
+    margin-top: 24px;
 }
 .logo{
+    width: 12.25%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -21,6 +22,7 @@
     font-weight: 600;
     font-size: 24px;
     line-height: 26.4px;
+    color: #031126;
 }
 ul{
     width: 387px;
@@ -33,7 +35,7 @@ ul li{
     display: flex;
     justify-content: space-between;
     list-style: none;
-    color: #000;
+    color: #031126;
     font-size: 17px;
     font-weight: 500;
     cursor: pointer;
@@ -41,5 +43,51 @@ ul li{
 }
 a{
     text-decoration: none;
-    color: #000;
+    color: #031126;
+}
+ul li a:hover{
+    color: #49B3FB;
+    transition: 0.3s;
+}
+.headerBtn{
+    width: 310px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.headerBtn button{
+    width: 140px;
+    height: 60px;
+    border-radius: 15px;
+  
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 18.7px;
+
+}
+.loginBtn{
+    border: none;
+    border: solid 1px #49B3FB;
+    background-color: #fff;
+    color: #49B3FB;
+}
+.signupBtn{
+    border: none;
+    background-color: #49B3FB;
+    color: #fff;
+}
+.loginBtn:hover{
+    background-color: #49B3FB;
+    color: #fff;
+    transition: 0.3s;
+    box-shadow: 0px 8px 8px 4px rgba(3, 17, 38, 0.087);
+}
+.signupBtn:hover{
+    background-color: #fff;
+    color: #49B3FB;
+    border: none;
+    border: solid 1px #49B3FB;
+    transition: 0.3s;
+    box-shadow: 0px 8px 8px 4px rgba(3, 17, 38, 0.087);
+
 }

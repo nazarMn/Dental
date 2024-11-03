@@ -22,8 +22,8 @@ Dental
     </ul>
 </nav>
 <div className="headerBtn">
-    <button>Log in</button>
-    <button>Sign up</button>
+    <button className="loginBtn">Log in</button>
+    <button className="signupBtn">Sign up</button>
 </div>
         </div>
     )
