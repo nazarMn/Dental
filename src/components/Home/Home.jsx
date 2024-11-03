@@ -1,5 +1,8 @@
 import React from "react";
-import './Home.css'
+import './Home.css';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlay } from "@fortawesome/free-solid-svg-icons";
+
 
 
 const Home = () => {
@@ -9,10 +12,12 @@ const Home = () => {
             <h2>
             We Care About Your <br /> Dental Health.
             </h2>
-            <p>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​Dental or oral health is concerned with your teeth, gums and mouth. healthy mouth, <br /> free of infections, injuries and other problems .</p>
+            <p>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​Dental or oral health is concerned with your teeth, gums and mouth. <br />healthy mouth,  free of infections, injuries and other problems .</p>
             <div className="homeButton">
                 <button className="appoinmentBtn">Appoinment</button>
-                <button className="playBtn"></button>
+                <button className="playBtn">  <FontAwesomeIcon icon={faPlay} size="2xl"/></button>
+                <h2>Watch Video</h2>
+
 
             </div>
         </div>
