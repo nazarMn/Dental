@@ -6,7 +6,7 @@
 }
 .home{
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     width: 100%;
     height: 93.33%;
     padding-left: 15.93%;
@@ -88,9 +88,24 @@ text-align: start;
 
 
 .homeRight{
-    width: 52%;
+    width: 42%;
     height: 100%;
     display: flex;
-    background-color: red;
-    padding-top: 30px;
+    position: absolute;
+    right: 0;
+    justify-content: flex-end;
+    overflow: hidden;
+}
+.background{
+    width: 26%;
+    height: 100%;
+    background-color: #49B3FB;
+}
+.homeRight img{
+    margin-top: 17%;
+  
+    width: 90%;
+    position: absolute;
+    border-radius: 16px;
+    right: -15px;
 }

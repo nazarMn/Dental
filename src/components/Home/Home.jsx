@@ -2,6 +2,7 @@ import React from "react";
 import './Home.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
+import youngImage from './../../assets/img/young.png';
 
 
 
@@ -22,7 +23,10 @@ const Home = () => {
             </div>
         </div>
         <div className="homeRight">
+        <img src={youngImage} alt="young" />
+          <div className="background">
 
+          </div>
         </div>
       </div>
     )
