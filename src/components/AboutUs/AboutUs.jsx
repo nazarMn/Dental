@@ -1,12 +1,14 @@
 import React from "react";
 import './AboutUs.css';
-import doctor from './../../assets/img/doctor.png';
 
 
 
 const AboutUs = () => {
     return (
       <div className="aboutUs">
+        <div className="blue">
+          <div className="re"></div>
+        </div>
         <div className="aboutUsBox">
             <div className="aboutUsBoxLeft">
             <img src={doctor} alt="doctor" />
