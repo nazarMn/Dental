@@ -1,0 +1,58 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif
+}
+.servicesCard{
+    width: 31.8%;
+    height: 425px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 25px;
+    background-color: #C9E9FF33;
+    padding-top: 66px;
+    padding-bottom: 66px;
+    padding-left: 40px;
+    padding-right: 14px;
+}
+.servicesCardText h2{
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 51px;
+    color: #031126;
+}
+.servicesCardText p{
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 30.6px;
+    color: #031126b7;
+}
+.servicesCardMore{
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.servicesCardMore h3 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 21.6px;
+    color: #031126;
+    cursor: pointer;
+    transition: background 0.9s ease, color 0.9s ease;
+}
+
+.servicesCardMore h3:hover {
+    background: linear-gradient(to right, #f06, #ff8c00); 
+    background-clip: text;
+    color: transparent;
+}
+
+
+.servicesCardMore img{
+    width: 15px;
+    cursor: pointer;
+}

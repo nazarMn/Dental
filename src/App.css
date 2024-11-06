@@ -144,7 +144,6 @@ padding-bottom: 28px;
   justify-content: center;
   width: 100%;
   height: 53.51vh;
-  background-color: red;
   margin-top: 80px;
 }
 .aboutUsBox{
@@ -165,32 +164,204 @@ height: 100%;
 .aboutUsBoxRight{
   width: 50%;
   height: 100%;
+  padding-top: 24px;
 }
-.aboutUsBoxRight .text{
+.aboutUsBoxRight .aboutUsText{
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
   text-align: start;
   flex-direction: column;
   width: 100%;
-  height: 53.5%;
+  height: 52.5%;
 }
-.text h2{
+.aboutUsText h2{
   font-size: 17px;
   font-weight: 400;
   line-height: 18.7px;
   color: #1AA1FD;
 }
-.text h3{
-  font-size: 46px;
+.aboutUsText h3{
+  font-size: 56px;
   font-weight: 600;
-  line-height: 55.6px;
+  line-height: 75.6px;
   color: #031126;
   margin-top: 5px;
 }
-.text p{
-  font-size: 16px;
+.aboutUsText p{
+  font-size: 18px;
   font-weight: 400;
-  line-height: 25.6px;
+  line-height: 30.6px;
   color: #031126B2;
+}
+.aboutUsInfo{
+  width: 100%;
+  height: 48.5%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding-top: 44px;
+  padding-bottom: 32px;
+  gap: 24px;
+}
+.aboutUsInfoTop button{
+  width: 74px;
+  height: 74px;
+  border: none;
+  border-radius: 12px;
+  background-color: #49B3FB;
+}
+.aboutUsInfoTop button:hover{
+  cursor: pointer;
+  background-color: #fff;
+  color: #031126;
+  border: none;
+  border: solid 1px #49B3FB;
+  transform: 0.3s; transition: 0.3s;
+  box-shadow: 0px 8px 8px 4px rgba(3, 17, 38, 0.087);
+}
+.aboutUsInfoBottom button {
+  position: relative;
+  width: 74px;
+  height: 74px;
+  border: none; /* Задає ширину без стандартної рамки */
+  border-radius: 12px;
+  background-color: #fff;
+  z-index: 1;
+  overflow: hidden; /* Щоб псевдоелемент не виходив за межі */
+  transform: 0.3s; transition: 0.3s;
+}
+
+.aboutUsInfoBottom button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 12px;
+  padding: 2px; 
+  background: linear-gradient(to bottom, #49B3FB, rgba(0, 0, 0, 0));
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: -1;
+}
+.aboutUsInfoBottom button:hover {
+  background-color: #e0f3ff; /* Зміна кольору фону при наведенні */
+  transform: scale(1.05); /* Легке збільшення кнопки при наведенні */
+  
+}
+.aboutUsInfoTop{
+  width: 100%;
+  display: flex;
+  gap: 42px;
+}
+.aboutUsInfoBottom{
+  display: flex;
+  gap: 42px;
+}
+.aboutUsInfoText h2{
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 26.4px;
+}
+.aboutUsInfoText p{
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  color: #031126B2;
+}
+
+
+
+
+/* Services */
+.services{
+  width: 100%;
+  height: 89vh;
+}
+.servicesTop{
+  width: 100%;
+  height: 38%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: center;
+  gap: 10px;
+}
+.servicesTop h2{
+  font-size: 56px;
+  font-weight: 600;
+  line-height: 75.6px;
+  color: #031126;
+}
+.servicesTop p{
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 30.6px;
+  color: #031126BF;
+}
+.servicesBottom{
+  width: 100%;
+  height: 62%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+
+/* Professionals */
+
+
+
+.professionals{
+  width: 100%;
+  height: 98vh;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.professionalsTop{
+  width: 100%;
+  height: 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+}
+.professionalsTop h2{
+  font-size: 56px;
+  font-weight: 600;
+  line-height: 75.6px;
+  color: #031126;
+}
+.professionalsTop h3{
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 18.7px;
+  color: #1AA1FD;
+}
+.professionalsTop p{
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 30.6px;
+  color: #031126BF;
+}
+.professionalsBottom{
+  width: 100%;
+  height: 65%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
 }
