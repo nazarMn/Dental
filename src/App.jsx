@@ -140,8 +140,12 @@ function App() {
     ))}
       </div>
       </div>
-      
 
+
+
+      <div className="informationAboutUs">
+        
+      </div>
   
 
     </div>
