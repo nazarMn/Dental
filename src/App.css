@@ -6,8 +6,6 @@
 }
 .wrap{
   width: 100%;
-  padding-left: 19.27%;
-  padding-right: 19.27%;
 
 }
 
@@ -22,6 +20,8 @@
 .wrap .home{
   display: flex;
   height: 90vh;
+  padding-left: 19.27%;
+  padding-right: 19.27%;
 }
 
 .homeLeft{
@@ -145,6 +145,8 @@ padding-bottom: 28px;
   width: 100%;
   height: 53.51vh;
   margin-top: 80px;
+  padding-left: 19.27%;
+  padding-right: 19.27%;
 }
 .aboutUsBox{
   display: flex;
@@ -286,6 +288,8 @@ height: 100%;
 .services{
   width: 100%;
   height: 89vh;
+  padding-left: 19.27%;
+  padding-right: 19.27%;
 }
 .servicesTop{
   width: 100%;
@@ -329,6 +333,8 @@ height: 100%;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
+  padding-left: 19.27%;
+  padding-right: 19.27%;
 }
 .professionalsTop{
   width: 100%;
@@ -364,4 +370,224 @@ height: 100%;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+}
+
+
+
+
+
+
+/* informationAboutUs */
+
+
+
+.informationAboutUs {
+  width: 100%;
+  height: 27.77vh;
+  background-color: #c9e9ff60;
+  padding-left: 19.27%;
+  padding-right: 19.27%;
+  display: flex;
+  align-items: center; 
+  justify-content: space-between;
+}
+
+.informationAboutUsBox {
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  gap: 15px;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: transform 1.5s ease, opacity 1.5s ease;
+}
+
+.informationAboutUsBoxTop h2 {
+  font-size: 56px;
+  font-weight: 600;
+  line-height: 84px;
+  color: #031126;
+  transition: transform 1.3s ease, opacity 1.3s ease;
+}
+
+.informationAboutUsBoxBottom p {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 27px;
+  color: #031126BF;
+  transition: color 1.3s ease;
+}
+
+.informationAboutUsBox:hover {
+  transform: scale(1.05);
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.informationAboutUsBox.appear {
+  animation: fadeInUp 1.7s ease forwards;
+}
+
+.informationAboutUsBox.appear {
+  animation: fadeInUp 1.7s ease forwards;
+  transform: translateY(0);
+  opacity: 1;
+  align-self: center;
+}
+
+
+
+
+/* easySteps */
+
+
+.easySteps{
+  width: 100%;
+  height: 78vh;
+  padding-left: 19.27%;
+  padding-right: 19.27%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between
+}
+.eastStepsLeft{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.easyStepsLeftTop{
+  width: 100%;
+  height: 30%;
+  gap: 18px;
+  display: flex;
+  flex-direction: column;
+}
+.easyStepsLeftTop h2{
+ font-size: 56px;
+ line-height: 72.8px;
+ font-weight: 600;
+ color: #031126;
+}
+.easyStepsLeftTop p{
+font-size: 17px;
+font-weight: 400;
+line-height: 30px;
+color: #031126A6;
+}
+.easyStepsLeftBottom{
+  width: 100%;
+  height: 70%;
+  display: flex;
+  padding-top: 50px;
+  gap: 15px;
+}
+.easyStepsLeftBottomLeft{
+  width: 10%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.easyStepsLeftBottomLeft h2{
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  border: dashed  1px #0098FF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.easyStepsLeftBottomRight{
+  width: 90%;
+  padding-right: 118px;
+}
+.easyStepsLeftBottom h2{
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 25px;
+  color: #031126BF;
+}
+.easyStepsLeftBottomLeft p{
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 30px;
+  color: #031126A6;
+}
+.easyStepsRight{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 78px;
+  
+}
+.easyStepsRight img{
+  width: 570px;
+  height: 578px;
+  border-radius: 28px;
+}
+
+
+
+
+
+
+/* appointment */
+
+
+
+
+.appointment{
+  width: 100%;
+  height: 100vh;
+  padding-left: 19.27%;
+  padding-right: 19.27%;
+  display: flex;
+  align-items: center;
+  background-color: #C9E9FF26;
+  flex-direction: column;
+}
+.appointmentTop{
+  width: 100%;
+  height: 25%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+.appointmentTop h2{
+  font-size: 56px;
+  font-weight: 600;
+  line-height: 72.8px;
+  color: #031126;
+}
+.appointmentTop p{
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 30.6px;
+  color: #031126BF;
+}
+.appointmentBottom{
+  width: 100%;
+  height: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between
 }
