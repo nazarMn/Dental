@@ -233,6 +233,7 @@ height: 100%;
   z-index: 1;
   overflow: hidden; /* Щоб псевдоелемент не виходив за межі */
   transform: 0.3s; transition: 0.3s;
+  cursor: pointer;
 }
 
 .aboutUsInfoBottom button::before {
@@ -403,6 +404,7 @@ height: 100%;
   transform: translateY(20px);
   opacity: 0;
   transition: transform 1.5s ease, opacity 1.5s ease;
+  z-index: 9999;
 }
 
 .informationAboutUsBoxTop h2 {
@@ -563,7 +565,7 @@ color: #031126A6;
   flex-direction: column;
 }
 .appointmentTop{
-  width: 100%;
+  width: 90%;
   height: 25%;
   text-align: center;
   display: flex;
@@ -588,6 +590,241 @@ color: #031126A6;
   width: 100%;
   height: 75%;
   display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-top: 38px;
+}
+.appointmentBottomLeft{
+  width: 50%;
+  height: 90%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  padding-top: 18px;
+}
+.appointmentForm{
+  width: 100%;
+  height: 80%;
+  display: flex;
   align-items: center;
-  justify-content: space-between
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 28px;
+}
+.appointmentFormBox{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.appointmentFormBox select{
+  width: 280px;
+  height: 60px;
+  border-radius: 14px;
+  padding-left: 18px;
+  border: none;
+  border: solid 1px #CED6DB;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 19.5px;
+  color: #03112673;
+  background-color: #c9e9ff10;
+}
+.appointmentFormBox input{
+ width: 280px;
+ height: 60px;
+ border-radius: 14px;
+ padding-left: 18px;
+ border: none;
+ border: solid 1px #CED6DB;
+ font-size: 13px;
+ font-weight: 400;
+ line-height: 19.5px;
+ color: #03112673;
+ background-color: #c9e9ff10;
+}
+.appointmentFormBox textarea{
+  width: 100%;
+  height: 137px;
+  padding-left: 18px;
+  padding-top: 18px;
+  border-radius: 14px;
+  resize: none;
+  border: none;
+  border: solid 1px #CED6DB;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 19.5px;
+  color: #03112673;
+  background-color: #c9e9ff10;
+}
+.appointmentFormBtm{
+  width: 100%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.appointmentFormBtm button{
+  width: 204px;
+  height: 70px;
+  background-color: #0098FF;
+  border: none;
+  border-radius: 14px;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 30px;
+  transition: all 0.3s ease; 
+  cursor: pointer;
+}
+
+.appointmentFormBtm button:hover{
+  background-color: #007ACC; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px);
+}
+
+.appointmentBottomRight{
+  width: 45%;
+  height: 100%;
+  display: flex;
+  padding-top: 38px;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+
+
+
+
+/* reviews */
+
+
+
+
+.reviews{
+  width: 100%;
+  height: 104vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-left: 19.27%;
+  padding-right: 19.27%;
+  padding-bottom: 2%;
+}
+.reviewsTop{
+  width: 100%;
+  height: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 18px;
+  flex-direction: column;
+  text-align: center;
+}
+.reviewsTop h2{
+  font-size: 56px;
+  font-weight: 600;
+  line-height: 72.8px;
+  color: #031126;
+}
+.reviewsTop p{
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 30.6px;
+  color: #031126BF;
+}
+.reviewsCenter{
+  width: 100%;
+  height: 40%;
+  display: flex;
+  padding-top: 48px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.reviewsButton{
+  width: 100%;
+  height: 35%;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #0098FF;
+  border-radius: 50px;
+}
+.reviewsButton h2{
+font-size: 35px;
+font-weight: 600;
+line-height: 20px;
+letter-spacing: 0.02em;
+text-align: center;
+color: #FFFFFF;
+}
+.reviewsButton p{
+font-size: 18px;
+font-weight: 400;
+line-height: 30.6px;
+text-align: center;
+color: #FFFFFF;
+}
+.emailSend{
+  width: 527px;
+  height: 70px;
+  display: flex;
+  justify-content: flex-start;
+  border-radius: 15px;
+  align-items: center;
+  background-color: #FFFFFF;
+  padding-left: 10px;
+}
+.emailSend input{
+  padding-left: 8px;
+  width: 68%;
+  height: 98%;
+  border: none;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 14px;
+  text-align: left;
+  color: #0311264D;
+  background-color: #FFFFFF; 
+  outline: none;
+}
+.emailSend button{
+  width: 155px;
+  height: 60px;
+  background-color: #0098FF;
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 17px;
+  cursor: pointer;
+}
+.emailSend button:hover{
+  background-color: #007ACC; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(3px);
+}
+
+
+
+
+/* Copyright */
+.Copyright{
+  width: 100%;
+  height: 8vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Copyright p{
+font-size: 17px;
+font-weight: 400;
+line-height: 17px;
+text-align: center;
+color: #03112699;
 }

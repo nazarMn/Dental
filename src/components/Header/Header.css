@@ -48,6 +48,7 @@ ul li{
 a{
     text-decoration: none;
     color: #031126;
+    z-index: 9999;
 }
 ul li a:hover{
     color: #49B3FB;
