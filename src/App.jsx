@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import './App.css';
+import './Responsive.css';
 import Header from './components/Header/Header';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
