@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import './App.css';
-import './Responsive.css';
+// import './Responsive.css';
 import Header from './components/Header/Header';
+import EmailSend from "./components/EmailSend/EmailSend";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -334,10 +335,7 @@ function App() {
           <div className="reviewsButton">
             <h2>Our Newsletter</h2>
             <p>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​Dental or oral health is concerned with your teeth, gums and mouth. <br /> healthy mouth free of infections, injuries and other problems with.</p>
-            <div className="emailSend">
-              <input type="text" placeholder="Enter your email"/>
-              <button>Subscribe</button>
-            </div>
+            <EmailSend/>
           </div>
       </div>
 

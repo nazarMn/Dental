@@ -1,0 +1,41 @@
+.emailSend{
+    width: 527px;
+    height: 70px;
+    display: flex;
+    justify-content: flex-start;
+    border-radius: 15px;
+    align-items: center;
+    background-color: #FFFFFF;
+    padding-left: 10px;
+  }
+  .emailSend input{
+    padding-left: 8px;
+    width: 68%;
+    height: 98%;
+    border: none;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 14px;
+    text-align: left;
+    color: #0311264D;
+    background-color: #FFFFFF; 
+    outline: none;
+  }
+  .emailSend button{
+    width: 155px;
+    height: 60px;
+    background-color: #0098FF;
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 17px;
+    cursor: pointer;
+  }
+  .emailSend button:hover{
+    background-color: #007ACC; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(3px);
+  }
+  
