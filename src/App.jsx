@@ -21,7 +21,6 @@ import doctor1 from '/doctor 1.png';
 import doctor2 from '/doctor 2.png';
 import doctor3 from '/doctor 3.png';
 import doctor4 from '/doctor 4.png';
-import doctor5 from './assets/doctor 5.svg';
 import people1 from '/people 1.png';
 import people2 from '/people 2.png';
 import people3 from '/people 3.png';
@@ -29,15 +28,6 @@ import ProfessionalsCard from './components/ProfessionalsCard/ProfessionalsCard'
 import ReviewsCard from './components/ReviewsCard/ReviewsCard';
 
 function App() {
-  const [formData, setFormData] = useState({
-    name: '',
-    gender: '',
-    phone: '',
-    email: '',
-    department: '',
-    date: '',
-    details: '',
-  });
 
   const servicesData = [
     { imgSrc: tooth2, title: "Teeth Checkup" },
@@ -73,16 +63,6 @@ function App() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-  };
 
   return (
     <div className='wrap'>

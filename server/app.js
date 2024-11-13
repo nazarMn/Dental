@@ -32,6 +32,27 @@ app.post('/send', (req, res) => {
     newEmail.save();
 
 })
+
+
+const appointmentSchema = new mongoose.Schema({
+    name: String,
+    gender: String,
+    phone: String,
+    email: String,
+    department: String,
+    date: String,
+    details: String,
+});
+
+const Appointment = mongoose.model('Appointment', appointmentSchema);
+
+
+
+
+
+
+
+
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
