@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import './AppointmentForm.css';
+import axios from 'axios';
 import doctor5 from './../../assets/doctor 5.svg';
+import './AppointmentForm.css';
 
-export default function AppointmentForm() {
+const AppointmentForm = () => {
   const [formData, setFormData] = useState({
     name: '',
     gender: '',
@@ -10,18 +11,33 @@ export default function AppointmentForm() {
     email: '',
     department: '',
     date: '',
-    details: '',
+    details: ''
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    sendMail();
   };
+
+  const sendMail = () => {
+    axios.post('http://localhost:3000/send-appointment', formData)
+      .then((res) => {
+        alert('Appointment saved and email sent successfully');
+      })
+      .catch((err) => {
+        console.error(err);
+        alert('Failed to save appointment and send email');
+      });
+  };
+  
 
   return (
     <div className="appointmentBottom">
@@ -97,4 +113,6 @@ export default function AppointmentForm() {
       </div>
     </div>
   );
-}
+};
+
+export default AppointmentForm;
