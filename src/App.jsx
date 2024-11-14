@@ -87,6 +87,16 @@ function Layout() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const togglePopup = () => {
+    setIsPopupOpen(!isPopupOpen);
+  };
+
+
+
+
   return (
     <div className='wrap'>
     <Header />
@@ -98,7 +108,7 @@ function Layout() {
         <p>Dental or oral health is concerned with your teeth, gums and mouth. <br />Healthy mouth, free of infections, injuries and other problems.</p>
         <div className="homeButton">
           <button className="appoinmentBtn">Appointment</button>
-          <button className="playBtn">
+          <button className="playBtn" onClick={togglePopup}>
             <FontAwesomeIcon icon={faPlay} size="2xl" />
           </button>
           <h2>Watch Video</h2>
@@ -107,6 +117,25 @@ function Layout() {
       <div className="homeRight">
         <img src={YoungImg} alt="young" />
       </div>
+
+      {isPopupOpen && (
+        <div className="popup">
+          <div className="popupContent">
+            <button className="closeBtn" onClick={togglePopup}>Close</button>
+            <iframe
+  width="100%"
+  height="400"
+  src="https://www.youtube.com/embed/RPDlvruZCKE?controls=0&showinfo=0&modestbranding=1&autohide=1&autoplay=1"
+  title="YouTube video player"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowFullScreen
+></iframe>
+
+
+          </div>
+        </div>
+      )}
     </div>
 
     <div className="aboutUs">

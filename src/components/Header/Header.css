@@ -75,14 +75,14 @@ ul li a:hover{
     border: solid 1px #49B3FB;
     background-color: #fff;
     color: #49B3FB;
-    z-index: 9999;
+    z-index: 100;
     cursor: pointer;
 }
 .signupBtn{
     border: none;
     background-color: #49B3FB;
     color: #fff;
-    z-index: 9999;
+    z-index: 100;
     cursor: pointer;
 }
 .loginBtn:hover{
