@@ -184,6 +184,10 @@ iframe {
   font-size: 18px;
   font-weight: bold;
   padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
   border-radius: 50%;
   cursor: pointer;
   transition: background 0.3s ease;

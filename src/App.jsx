@@ -7,6 +7,7 @@ import Header from './components/Header/Header';
 import EmailSend from "./components/EmailSend/EmailSend";
 import AppointmentForm from "./components/AppointmentForm/AppointmentForm";
 import AdminPanel from "./components/AdminPanel/AdminPanel";
+import AdminProfessionals from "./components/AdminProfessionals/AdminProfessionals"
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -41,9 +42,9 @@ function App() {
       
     <Router>
     <Routes>
-      <Route path="/admin" element={<AdminPanel />} />
+      <Route path="/admin" element={<AdminPage />} />
       {/* Add other routes as needed */}
-      <Route path="/" element={<Layout />}>
+      <Route path="/" element={<MainPage />}>
         
       </Route>
     </Routes>
@@ -52,18 +53,40 @@ function App() {
   );
 }
 
-function Layout() {
+function AdminPage() {
+
+  return (
+    <div className="wrap">
+      <AdminPanel/>
+      <AdminProfessionals/>
+    </div>
+      
+    
+   
+  );
+}
+
+
+function MainPage() {
   const servicesData = [
     { imgSrc: tooth2, title: "Teeth Checkup" },
     { imgSrc: tooth3, title: "Dental Crown" },
     { imgSrc: tooth4, title: "Teeth Implants" },
   ];
 
-  const professionalsData = [
-    { imgSrc: doctor1, title: "Dr.Rana Roy", specialist: "Dental Crown" },
-    { imgSrc: doctor2, title: "Dr.John Roy", specialist: "Teeth Checkup" },
-    { imgSrc: doctor3, title: "Dr.Michel Roy", specialist: "Teeth Implants" },
-  ];
+  const [doctors, setDoctors] = useState([]);
+
+  // Завантаження лікарів із сервера
+  useEffect(() => {
+    fetch('http://localhost:3000/doctors') // Замініть на свій серверний маршрут
+      .then((response) => response.json())
+      .then((data) => {
+        setDoctors(data);
+      })
+      .catch((error) => {
+        console.error('Помилка при отриманні лікарів:', error);
+      });
+  }, []);
 
   const reviewsData = [
     {  imgSrc:people1, name: "Andrew Smith ", text: "Lorem ipsum dolor sit amet, consec adipis. Cursus ultricies sit sit ultricies sit sit dolo", rating:4},
@@ -121,7 +144,7 @@ function Layout() {
       {isPopupOpen && (
         <div className="popup">
           <div className="popupContent">
-            <button className="closeBtn" onClick={togglePopup}>Close</button>
+            <button className="closeBtn" onClick={togglePopup}>X</button>
             <iframe
   width="100%"
   height="400"
@@ -196,14 +219,14 @@ function Layout() {
         </p>
       </div>
       <div className="professionalsBottom">
-        {professionalsData.map((professional, index) => (
-          <ProfessionalsCard
-            key={index}
-            imgSrc={professional.imgSrc}
-            title={professional.title}
-            specialist={professional.specialist}
-          />
-        ))}
+      {doctors.map((doctor) => (
+        <ProfessionalsCard
+          key={doctor._id} // Унікальний ключ
+          imgSrc={`http://localhost:3000${doctor.photo}`} // URL фото лікаря
+          title={doctor.name} // Ім'я лікаря
+          specialist={doctor.specialty} // Спеціальність
+        />
+      ))}
       </div>
     </div>
 
