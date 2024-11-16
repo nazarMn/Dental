@@ -83,6 +83,7 @@ const AdminProfessionals = () => {
               width="50"
               height="50"
             />
+            
             <p>{doctor.name}</p>
             <p>{doctor.specialty}</p>
           </li>
