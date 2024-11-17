@@ -73,7 +73,8 @@ const AdminProfessionals = () => {
         <button type="submit">Додати лікаря</button>
       </form>
 
-      <h3>Список лікарів</h3>
+      <h3>Список лікарів</h3> 
+      
       <ul>
         {doctors.map((doctor, index) => (
           <li key={index}>
