@@ -6,6 +6,150 @@
 }
 .adminComments{
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
+    justify-content: center;
+    align-items: flex-start;
 }
+
+  .adminCommentsRight {
+    width: 50%;
+    height: 100%;
+    text-align: center; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .horizontalLine {
+    width: 2px; 
+    height: 100%; 
+    background-color: #000; 
+    margin: 0; 
+  }
+
+  .adminCommentsLeft{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .adminCommentsLeftTop{
+    width: 100%;
+    height: 10%;
+    text-align: center; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .adminCommentsLeftBottom{
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+
+
+  
+  
+
+
+
+
+
+
+  /* Основний контейнер форми */
+.createCommentBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 400px; /* Максимальна ширина форми */
+    margin: 20px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Стиль для інпутів */
+  .createCommentInput {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+  }
+  .createCommentTextarea{
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+    resize: none;
+    height: 100px;
+  }
+  
+  .createCommentInput:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  /* Стиль для select */
+  .createCommentSelect {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    background: #fff;
+    transition: border-color 0.3s ease;
+  }
+  
+  .createCommentSelect:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  /* Кнопка */
+  .createCommentButton {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .createCommentButton:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Анімація для кнопки при кліку */
+  .createCommentButton:active {
+    transform: scale(0.98);
+  }
+
+
+
+
+
+
+
