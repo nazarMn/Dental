@@ -44,6 +44,34 @@ const emailSchema = new mongoose.Schema({
 
 const Email = mongoose.model('Email', emailSchema);
 
+const commentSchema = new mongoose.Schema({
+    name: String,
+    comment: String,
+    rating: Number
+});
+
+const Comment = mongoose.model('Comment', commentSchema);
+
+app.post('/send-comment', (req, res) => {
+    const { name, comment, rating } = req.body;
+
+    const newComment = new Comment({
+        name,
+        comment,
+        rating
+    });
+
+    newComment.save()
+    .then(() => {
+        res.status(201).json({ message: 'Коментар збережено успішно' });
+    })
+    .catch((err) => {
+        console.error('Не вдалося зберегти коментар:', err);
+        res.status(500).json({ message: 'Не вдалося зберегти коментар' });
+    });
+})
+
+
 // Маршрут для збереження даних запису на прийом
 app.post('/send-appointment', (req, res) => {
     const { name, gender, phone, email, department, date, details } = req.body;
