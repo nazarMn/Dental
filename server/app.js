@@ -137,6 +137,18 @@ app.get('/emails', (req, res) => {
 });
 
 
+app.get('/comments', (req, res) => {
+    Comment.find()
+        .then((comments) => {
+            res.status(200).json(comments);
+        })
+        .catch((err) => {
+            console.error('Не вдалося отримати коментарі:', err);
+            res.status(500).json({ message: 'Не вдалося отримати коментарі' });
+        });
+});
+
+
 
 
 

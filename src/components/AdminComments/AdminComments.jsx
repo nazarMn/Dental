@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './AdminComments.css';
 import axios from 'axios'
 import { useState } from 'react'
@@ -28,6 +28,21 @@ const AdminComments = () => {
           alert('Failed to send comment');
         });
     };
+
+
+    useEffect(() => {
+
+      fetch('http://localhost:3000/comments')
+        .then((response) => response.json())
+        .then((data) => setComments(data))
+        .catch((err) => console.error('Помилка при отриманні лікарів:', err));
+
+    }, []);
+
+  const [comments, setComments] = useState([]);
+
+   
+  
   
 
   return (
@@ -38,6 +53,30 @@ const AdminComments = () => {
         </div>
 
         <div className="adminCommentsLeftBottom">
+
+          {comments.map((comment) => (
+           <div className="reviewsCard" key={comment.id}>
+           <div className="reviewsCardTop">
+         <img className="reviewsCard-img" />
+         <h2 className="reviewsCard-name">{comment.name}</h2>
+         </div>
+         <div className="reviewsCardCenter">
+         <p className="reviewsCard-text">{comment.comment}</p>
+         </div>
+         <div className="reviewsCardButton">
+         
+         {/* <div className="reviewsCard-star">
+             {filledStars.map((star, index) => (
+               <img key={`filled-${index}`} src={star} alt="filled star" className="filled" />
+             ))}
+             {emptyStars.map((star, index) => (
+               <img key={`empty-${index}`} src={star} alt="empty star" className="empty" />
+             ))}
+           </div> */}
+         </div>
+       </div>
+          ))}
+
         </div>
       </div>
 
