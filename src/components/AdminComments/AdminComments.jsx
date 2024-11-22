@@ -7,18 +7,20 @@ import Star2 from './../../assets/star 2.svg';
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper/modules';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
 
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import 'swiper/css/autoplay';
 
 // Import Swiper modules
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import 'swiper/css/autoplay';
 
 const AdminComments = () => {
   const [comments, setComments] = useState([]);
@@ -61,7 +63,7 @@ const AdminComments = () => {
 
         <div className="adminCommentsLeftBottom">
         <Swiper
-   modules={[Navigation, Pagination]}
+   modules={[Navigation, Pagination, Autoplay]}
    spaceBetween={1}
    slidesPerView={1}
    navigation
@@ -70,7 +72,7 @@ const AdminComments = () => {
      delay: 3000,
      disableOnInteraction: false,
    }}
-   speed={500}
+
    loop={true}
    style={{
      width: '100%',

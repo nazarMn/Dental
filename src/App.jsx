@@ -13,7 +13,14 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 library.add(faPlay);
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/autoplay';
 
 
 
@@ -90,11 +97,7 @@ function MainPage() {
       });
   }, []);
 
-  const reviewsData = [
-    {  imgSrc:people1, name: "Andrew Smith ", text: "Lorem ipsum dolor sit amet, consec adipis. Cursus ultricies sit sit ultricies sit sit dolo", rating:4},
-    {  imgSrc:people2, name: "Andrew Smith ", text: "Lorem ipsum dolor sit amet, consec adipis. Cursus ultricies sit sit ultricies sit sit dolo", rating:5},
-    {  imgSrc:people3, name: "Andrew Smith ", text: "Lorem ipsum dolor sit amet, consec adipis. Cursus ultricies sit sit ultricies sit sit dolo", rating:5}
-  ];
+
 
   const boxesRef = useRef([]);
 
@@ -305,9 +308,14 @@ function MainPage() {
         <p>We believe that focus and our associated programs are most <br /> instrumental in reducing readmissions and managing.</p>
         </div>
         <div className="reviewsCenter">
-        {reviewsData.map((service, index) => (
-          <ReviewsCard key={index} imgSrc={service.imgSrc} name={service.name} text={service.text} rating={service.rating} />
-        ))}
+
+       
+        
+          <ReviewsCard/>
+        
+
+
+        
         </div>
         <div className="reviewsButton">
           <h2>Our Newsletter</h2>
