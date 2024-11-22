@@ -9,6 +9,7 @@ import AppointmentForm from "./components/AppointmentForm/AppointmentForm";
 import AdminPanel from "./components/AdminPanel/AdminPanel";
 import AdminProfessionals from "./components/AdminProfessionals/AdminProfessionals"
 import AdminComments from "./components/AdminComments/AdminComments"
+import ReviewsCreate from "./components/ReviewsCreate/ReviewsCreate";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -312,6 +313,8 @@ function MainPage() {
        
         
           <ReviewsCard/>
+
+          <ReviewsCreate/>
         
 
 

@@ -1,0 +1,158 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.reviewsCreate {
+    width: 100%;
+    padding: 20px;
+    max-width: 600px;
+    margin: 30px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.reviewsCreateTop {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.reviewsCreateTop h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #031126;
+}
+
+.reviewsCreateTop p {
+    font-size: 16px;
+    color: #555;
+    margin-top: 10px;
+}
+
+.reviewsCreateCenter {
+    display: flex;
+    justify-content: center;
+}
+
+.commentInput {
+    width: 80%;
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #B5E0FF;
+    height: 150px;
+    resize: none;
+    outline: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+.reviewsCreateInput{
+    text-align: center;
+    font-size: 20px;
+    border-radius: 8px;
+    border: 1px solid #B5E0FF;
+    outline: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 70%;
+
+}
+
+.commentInput:focus {
+    border-color: #6C63FF;
+    box-shadow: 0 2px 8px rgba(108, 99, 255, 0.3);
+}
+
+.reviewsCreateBottom {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.rating {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.rating label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #031126;
+}
+
+.ratingSelect {
+    width: 150px;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 8px;
+    border: 1px solid #B5E0FF;
+    outline: none;
+    background-color: #f8f8f8;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.ratingSelect:hover {
+    border-color: #6C63FF;
+}
+
+.submitButton {
+    display: flex;
+    justify-content: center;
+}
+
+.submitBtn {
+    padding: 12px 24px;
+    background-color: #6C63FF;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.submitBtn:hover {
+    background-color: #5a52d0;
+    transform: translateY(-3px);
+}
+
+.submitBtn:active {
+    background-color: #4b47a1;
+    transform: translateY(0);
+}
+
+
+
+
+.reviewsCreateButton{
+    width: 100px;
+    
+    border-radius: 8px;
+    background-color: #49B3FB;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 18.7px;
+    cursor: pointer;
+    transition: background 1.9s ease, color 0.9s ease;
+}
+.reviewsCreateButton:hover{
+    background: linear-gradient(to right, #f06, #ff8c00); 
+    background-clip: text;
+    color: transparent;
+}
