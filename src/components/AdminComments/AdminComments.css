@@ -49,7 +49,7 @@
     width: 100%;
     height: 90%;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
   }
 
@@ -227,3 +227,12 @@ line-height: 25.5px;
     align-items: start;
     justify-content: center;
 }
+
+
+
+
+
+
+
+
+
