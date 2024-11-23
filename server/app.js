@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const multer = require('multer');
 
 // Підключення до MongoDB
-mongoose.connect('mongodb+srv://admin:hH8mI4EEax8GCnGR@admin.i6lpg.mongodb.net/test?retryWrites=true&w=majority&appName=admin', {
+mongoose.connect('mongodb+srv://admin:C0Urzbr1pymwOgsK@admin.i6lpg.mongodb.net/?retryWrites=true&w=majority&appName=admin', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
