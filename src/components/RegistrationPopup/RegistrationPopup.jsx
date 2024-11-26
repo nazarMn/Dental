@@ -12,6 +12,7 @@ const RegistrationPopup = () => {
                 <input type="text" placeholder="Confirm Password" />
                 <button>Register</button>
             </form>
+            
          
         </div>
     )
