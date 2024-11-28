@@ -14,6 +14,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 
+
 const ProfessionalsCard = ({ imgSrc, title, specialist }) => {
     return (
         <div className="professionalsCard">
