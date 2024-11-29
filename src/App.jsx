@@ -84,21 +84,6 @@ function MainPage() {
     { imgSrc: tooth4, title: "Teeth Implants" },
   ];
 
-  const [doctors, setDoctors] = useState([]);
-
-  // Завантаження лікарів із сервера
-  useEffect(() => {
-    fetch('http://localhost:3000/doctors') // Замініть на свій серверний маршрут
-      .then((response) => response.json())
-      .then((data) => {
-        setDoctors(data);
-      })
-      .catch((error) => {
-        console.error('Помилка при отриманні лікарів:', error);
-      });
-  }, []);
-
-
 
   const boxesRef = useRef([]);
 
@@ -225,14 +210,11 @@ function MainPage() {
         </p>
       </div>
       <div className="professionalsBottom">
-      {doctors.map((doctor) => (
+      
         <ProfessionalsCard
-          key={doctor._id} // Унікальний ключ
-          imgSrc={`http://localhost:3000${doctor.photo}`} // URL фото лікаря
-          title={doctor.name} // Ім'я лікаря
-          specialist={doctor.specialty} // Спеціальність
+        
         />
-      ))}
+   
       </div>
     </div>
 
