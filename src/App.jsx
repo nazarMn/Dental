@@ -151,6 +151,7 @@ function MainPage() {
         </div>
       )}
     </div>
+    
 
     <div className="aboutUs">
       <div className="aboutUsBox">
