@@ -36,7 +36,7 @@ const ReviewsCard = () => {
     <Swiper
       modules={[Navigation, Pagination, Autoplay]}
       spaceBetween={1}
-      slidesPerView={1}
+      slidesPerView={3}
       navigation
       pagination={{ clickable: true }}
       autoplay={{
