@@ -14,8 +14,8 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 library.add(faPlay);
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+// import { Swiper, SwiperSlide } from 'swiper/react';
+// import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -34,13 +34,13 @@ import tooth2 from './assets/tooth 2.svg';
 import tooth3 from './assets/tooth 3.svg';
 import tooth4 from './assets/tooth 4.svg';
 import ServicesCard from './components/ServicesCard/ServicesCard';
-import doctor1 from '/doctor 1.png';
-import doctor2 from '/doctor 2.png';
-import doctor3 from '/doctor 3.png';
+// import doctor1 from '/doctor 1.png';
+// import doctor2 from '/doctor 2.png';
+// import doctor3 from '/doctor 3.png';
 import doctor4 from '/doctor 4.png';
-import people1 from '/people 1.png';
-import people2 from '/people 2.png';
-import people3 from '/people 3.png';
+// import people1 from '/people 1.png';
+// import people2 from '/people 2.png';
+// import people3 from '/people 3.png';
 import ProfessionalsCard from './components/ProfessionalsCard/ProfessionalsCard';
 import ReviewsCard from './components/ReviewsCard/ReviewsCard';
 
