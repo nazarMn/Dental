@@ -10,6 +10,11 @@ import AdminPanel from "./components/AdminPanel/AdminPanel";
 import AdminProfessionals from "./components/AdminProfessionals/AdminProfessionals"
 import AdminComments from "./components/AdminComments/AdminComments"
 import ReviewsCreate from "./components/ReviewsCreate/ReviewsCreate";
+
+import Admins from "./components/Admins/Admins";
+
+
+
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -66,6 +71,8 @@ function AdminPage() {
 
   return (
     <div className="wrap">
+      <Admins/>
+
       <AdminPanel/>
       <AdminProfessionals/>
       <AdminComments/>
