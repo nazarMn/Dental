@@ -6,10 +6,11 @@ import './App.css';
 import Header from './components/Header/Header';
 import EmailSend from "./components/EmailSend/EmailSend";
 import AppointmentForm from "./components/AppointmentForm/AppointmentForm";
-import AdminPanel from "./components/AdminPanel/AdminPanel";
+import AppointmentsAdmin from "./components/AppointmentsAdmin/AppointmentsAdmin";
 import AdminProfessionals from "./components/AdminProfessionals/AdminProfessionals"
 import AdminComments from "./components/AdminComments/AdminComments"
 import ReviewsCreate from "./components/ReviewsCreate/ReviewsCreate";
+import AdminEmail from "./components/AdminEmail/AdminEmail";
 
 import Admins from "./components/Admins/Admins";
 
@@ -56,13 +57,21 @@ function App() {
       
     <Router>
     <Routes>
-      <Route path="/admin" element={<AdminPage />} />
-      {/* Add other routes as needed */}
-      <Route path="/" element={<MainPage />}>
+      {/* Main Application Routes */}
+      <Route path="/" element={<MainPage />} />
+
+      {/* Admin Page with Nested Routes */}
+      <Route path="/admin" element={<AdminPage />}>
+        <Route path="AdminProfessionals" element={<AdminProfessionals />} />
+        <Route path="AdminComments" element={<AdminComments />} />
+        <Route path="AppointmentsAdmin" element={<AppointmentsAdmin />} />
+        <Route path="AdminEmail" element={<AdminEmail />} />
         
       </Route>
     </Routes>
   </Router>
+
+
    
   );
 }
@@ -73,9 +82,10 @@ function AdminPage() {
     <div className="wrap">
       <Admins/>
 
-      <AdminPanel/>
+      {/* <AppointmentsAdmin/>
       <AdminProfessionals/>
       <AdminComments/>
+      <AdminEmail/> */}
     </div>
     
       

@@ -10,26 +10,34 @@ const Admins = () => {
         <ul>
           <li>
             <NavLink
-              to="dashboard"
+              to="AdminProfessionals"
               className={({ isActive }) => (isActive ? 'active' : '')}
             >
-              Dashboard
+              Admin Professionals
             </NavLink>
           </li>
           <li>
             <NavLink
-              to="users"
+              to="AdminComments"
               className={({ isActive }) => (isActive ? 'active' : '')}
             >
-              Users
+              Admin Comments
             </NavLink>
           </li>
           <li>
             <NavLink
-              to="settings"
+              to="AppointmentsAdmin"
               className={({ isActive }) => (isActive ? 'active' : '')}
             >
-              Settings
+             Appointments Admin
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="AdminEmail"
+              className={({ isActive }) => (isActive ? 'active' : '')}
+            >
+             Admin Email
             </NavLink>
           </li>
         </ul>

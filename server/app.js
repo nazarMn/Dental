@@ -5,6 +5,8 @@ const path = require('path');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const multer = require('multer');
+const nodemailer = require('nodemailer');
+const bodyParser = require('body-parser');
 
 // Підключення до MongoDB
 mongoose.connect('mongodb+srv://admin:C0Urzbr1pymwOgsK@admin.i6lpg.mongodb.net/?retryWrites=true&w=majority&appName=admin', {
@@ -23,6 +25,9 @@ app.use(express.static(path.join(__dirname, '../dist')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+app.use(bodyParser.json());
+require('dotenv').config();
+
 
 // Схема і модель для записів на прийом
 const appointmentSchema = new mongoose.Schema({
@@ -95,6 +100,29 @@ app.post('/send-appointment', (req, res) => {
         res.status(500).json({ message: 'Не вдалося зберегти запис' });
     });
 });
+
+
+
+
+// Маршрут для видалення запису
+app.delete('/appointments/:id', (req, res) => {
+    const { id } = req.params;
+
+    Appointment.findByIdAndDelete(id)
+        .then(() => {
+            res.status(200).json({ message: 'Запис видалено успішно' });
+        })
+        .catch((err) => {
+            console.error('Не вдалося видалити запис:', err);
+            res.status(500).json({ message: 'Не вдалося видалити запис' });
+        });
+});
+
+
+
+
+
+
 
 // Маршрут для збереження email
 app.post('/send-email', (req, res) => {
@@ -230,8 +258,42 @@ app.get('/doctors', (req, res) => {
 
 
 
+//   const transporter = nodemailer.createTransport({
+//     service: 'Gmail',
+//     auth: {
+//         user: process.env.EMAIL_USER, // Ваш email (наприклад, your-email@gmail.com)
+//         pass: process.env.EMAIL_PASS, // Ваш пароль або App Password
+//     },
+// });
 
+// // Маршрут для надсилання email
+// app.post('/send-emails', async (req, res) => {
+//     const { recipients, text } = req.body; // Отримуємо отримувачів та текст повідомлення з тіла запиту
 
+//     // Перевірка на наявність отримувачів та тексту
+//     if (!recipients || !recipients.length || !text) {
+//         return res.status(400).json({ message: 'Вкажіть отримувачів і текст.' });
+//     }
+
+//     try {
+//         // Опції для відправки email
+//         const emailOptions = {
+//             from: process.env.EMAIL_USER,  // Відправник (ваш email)
+//             to: recipients.join(', '),     // Отримувачі
+//             subject: 'Розсилка повідомлення', // Тема листа
+//             text,                          // Текст повідомлення
+//         };
+
+//         // Відправка листа
+//         await transporter.sendMail(emailOptions);
+//         res.status(200).json({ message: 'Email успішно надіслано!' });
+//     } catch (err) {
+//         console.error('Помилка при надсиланні email:', err);
+//         res.status(500).json({ message: 'Не вдалося надіслати email.' });
+//     }
+// });
+
+  
 // Маршрут для обслуговування фронтенду
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../dist/index.html'));

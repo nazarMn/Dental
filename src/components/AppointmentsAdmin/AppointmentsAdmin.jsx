@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import './AdminPanel.css';
+import './AppointmentsAdmin.css';
 
-const AdminPanel = () => {
+const AppointmentsAdmin = () => {
   const [appointments, setAppointments] = useState([]);
-  const [emails, setEmails] = useState([]);
 
-  // Отримуємо дані з бекенду
   useEffect(() => {
     // Отримання записів на прийом
     fetch('http://localhost:3000/appointments')
@@ -17,26 +15,25 @@ const AdminPanel = () => {
       })
       .then((data) => setAppointments(data.reverse()))
       .catch((err) => console.error('Не вдалося отримати записи:', err));
+  }, []);
 
-    // Отримання email
-    fetch('http://localhost:3000/emails')
+  // Функція для видалення запису
+  const deleteAppointment = (id) => {
+    fetch(`http://localhost:3000/appointments/${id}`, { method: 'DELETE' })
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP помилка! Статус: ${response.status}`);
         }
-        return response.json();
+        // Оновлення стану після видалення
+        setAppointments(appointments.filter((appointment) => appointment._id !== id));
       })
-      .then((data) => setEmails(data.reverse()))
-      .catch((err) => console.error('Не вдалося отримати email:', err));
-  }, []);
+      .catch((err) => console.error('Не вдалося видалити запис:', err));
+  };
 
   return (
-    <div className="adminPanel">
-      <div className="adminPanelTop">
-        <h2>Адмін Панель</h2>
-      </div>
-      <div className="adminPanelBottom">
-        <div className="adminPanelBottomLeft">
+    <div className="appointmentsAdmin">
+      <div className="appointmentsAdminBottom">
+        <div className="appointmentsAdminLeft">
           <h3>Записи на прийом</h3>
           <table>
             <thead>
@@ -52,8 +49,8 @@ const AdminPanel = () => {
               </tr>
             </thead>
             <tbody>
-              {appointments.map((appointment, index) => (
-                <tr key={index}>
+              {appointments.map((appointment) => (
+                <tr key={appointment._id}>
                   <td>{appointment.name}</td>
                   <td>{appointment.gender}</td>
                   <td>{appointment.phone}</td>
@@ -61,23 +58,17 @@ const AdminPanel = () => {
                   <td>{appointment.department}</td>
                   <td>{new Date(appointment.date).toLocaleDateString()}</td>
                   <td>{appointment.details}</td>
-                  <td><button>Видалити</button></td>
+                  <td>
+                    <button onClick={() => deleteAppointment(appointment._id)}>Видалити</button>
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
-        </div>
-        <div className="adminPanelBottomRight">
-          <h3>Email-адреси</h3>
-          <ul>
-            {emails.map((email, index) => (
-              <li key={index}>{email.email}</li>
-            ))}
-          </ul>
         </div>
       </div>
     </div>
   );
 };
 
-export default AdminPanel;
+export default AppointmentsAdmin;
