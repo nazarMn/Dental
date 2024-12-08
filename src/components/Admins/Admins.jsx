@@ -30,6 +30,7 @@ const Admins = () => {
               className={({ isActive }) => (isActive ? 'active' : '')}
             >
              Appointments Admin
+             
             </NavLink>
           </li>
           <li>

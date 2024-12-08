@@ -118,4 +118,42 @@ body {
     border: 1px solid #ddd;
     border-radius: 4px;
   }
+/* 
+  .AdminEmail__action-panel select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
   
+  .AdminEmail__action-panel button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #ffffff;
+    transition: background-color 0.3s;
+  }
+  
+  .AdminEmail__action-panel button:hover {
+    background-color: #0056b3;
+  }
+  
+  .AdminEmail__action-panel input {
+    width: 60%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .AdminEmail__action-panel select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  } */
