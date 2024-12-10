@@ -5,8 +5,9 @@ const AdminEmail = () => {
     const [emails, setEmails] = useState([]);
     const [selectedEmails, setSelectedEmails] = useState([]);
     const [emailText, setEmailText] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const emailsPerPage = 15; // Кількість email на сторінці
 
-    // Завантаження email-адрес
     useEffect(() => {
         fetch('http://localhost:3000/emails')
             .then((response) => response.json())
@@ -14,7 +15,6 @@ const AdminEmail = () => {
             .catch((err) => console.error('Не вдалося отримати email:', err));
     }, []);
 
-    // Обробка вибору email
     const toggleEmailSelection = (email) => {
         setSelectedEmails((prev) =>
             prev.includes(email)
@@ -23,17 +23,16 @@ const AdminEmail = () => {
         );
     };
 
-    // Вибір усіх email
     const selectAllEmails = () => {
-        setSelectedEmails(emails.map((email) => email.email));
+        const startIndex = (currentPage - 1) * emailsPerPage;
+        const pageEmails = emails.slice(startIndex, startIndex + emailsPerPage);
+        setSelectedEmails(pageEmails.map((email) => email.email));
     };
 
-    // Скасування вибору всіх email
     const deselectAllEmails = () => {
         setSelectedEmails([]);
     };
 
-    // Обробка розсилки
     const handleSendEmails = () => {
         if (selectedEmails.length === 0) {
             alert('Оберіть хоча б один email для розсилки.');
@@ -64,9 +63,29 @@ const AdminEmail = () => {
             });
     };
 
+    const totalPages = Math.ceil(emails.length / emailsPerPage);
+    const startIndex = (currentPage - 1) * emailsPerPage;
+    const currentEmails = emails.slice(startIndex, startIndex + emailsPerPage);
+
+    const goToNextPage = () => {
+        if (currentPage < totalPages) setCurrentPage((prev) => prev + 1);
+    };
+
+    const goToPrevPage = () => {
+        if (currentPage > 1) setCurrentPage((prev) => prev - 1);
+    };
+
     return (
         <div className="AdminEmail">
             <h3>Розсилка по Email</h3>
+            <div className="AdminEmail__action-panel">
+                <textarea
+                    placeholder="Введіть текст для розсилки"
+                    value={emailText}
+                    onChange={(e) => setEmailText(e.target.value)}
+                />
+                <button onClick={handleSendEmails}>Надіслати</button>
+            </div>
 
             <div className="AdminEmail__controls">
                 <button onClick={selectAllEmails}>Вибрати всі</button>
@@ -75,7 +94,7 @@ const AdminEmail = () => {
 
             <div className="AdminEmail__list-container">
                 <ul>
-                    {emails.map((email, index) => (
+                    {currentEmails.map((email, index) => (
                         <li key={index}>
                             <input
                                 type="checkbox"
@@ -88,14 +107,14 @@ const AdminEmail = () => {
                 </ul>
             </div>
 
-            <div className="AdminEmail__action-panel">
-                <input
-                    type="text"
-                    placeholder="Введіть текст для розсилки"
-                    value={emailText}
-                    onChange={(e) => setEmailText(e.target.value)}
-                />
-                <button onClick={handleSendEmails}>Надіслати</button>
+            <div className="AdminEmail__pagination">
+                <button onClick={goToPrevPage} disabled={currentPage === 1}>
+                    Попередня
+                </button>
+                <span>{`${currentPage} із ${totalPages}`}</span>
+                <button onClick={goToNextPage} disabled={currentPage === totalPages}>
+                    Наступна
+                </button>
             </div>
         </div>
     );

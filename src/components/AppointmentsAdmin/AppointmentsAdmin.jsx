@@ -3,9 +3,10 @@ import './AppointmentsAdmin.css';
 
 const AppointmentsAdmin = () => {
   const [appointments, setAppointments] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const appointmentsPerPage = 15;
 
   useEffect(() => {
-    // Отримання записів на прийом
     fetch('http://localhost:3000/appointments')
       .then((response) => {
         if (!response.ok) {
@@ -17,17 +18,27 @@ const AppointmentsAdmin = () => {
       .catch((err) => console.error('Не вдалося отримати записи:', err));
   }, []);
 
-  // Функція для видалення запису
   const deleteAppointment = (id) => {
     fetch(`http://localhost:3000/appointments/${id}`, { method: 'DELETE' })
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP помилка! Статус: ${response.status}`);
         }
-        // Оновлення стану після видалення
         setAppointments(appointments.filter((appointment) => appointment._id !== id));
       })
       .catch((err) => console.error('Не вдалося видалити запис:', err));
+  };
+
+  const totalPages = Math.ceil(appointments.length / appointmentsPerPage);
+  const startIndex = (currentPage - 1) * appointmentsPerPage;
+  const currentAppointments = appointments.slice(startIndex, startIndex + appointmentsPerPage);
+
+  const goToNextPage = () => {
+    if (currentPage < totalPages) setCurrentPage((prev) => prev + 1);
+  };
+
+  const goToPrevPage = () => {
+    if (currentPage > 1) setCurrentPage((prev) => prev - 1);
   };
 
   return (
@@ -49,7 +60,7 @@ const AppointmentsAdmin = () => {
               </tr>
             </thead>
             <tbody>
-              {appointments.map((appointment) => (
+              {currentAppointments.map((appointment) => (
                 <tr key={appointment._id}>
                   <td>{appointment.name}</td>
                   <td>{appointment.gender}</td>
@@ -65,6 +76,15 @@ const AppointmentsAdmin = () => {
               ))}
             </tbody>
           </table>
+          <div className="pagination">
+            <button onClick={goToPrevPage} disabled={currentPage === 1}>
+              Попередня
+            </button>
+            <span>{`${currentPage} із ${totalPages}`}</span>
+            <button onClick={goToNextPage} disabled={currentPage === totalPages}>
+              Наступна
+            </button>
+          </div>
         </div>
       </div>
     </div>

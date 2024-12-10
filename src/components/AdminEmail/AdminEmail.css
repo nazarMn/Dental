@@ -3,7 +3,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     background-color: #f0f2f5;
   }
   
@@ -13,7 +13,7 @@ body {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     padding: 20px;
     box-sizing: border-box;
     background-color: #ffffff;
@@ -36,6 +36,8 @@ body {
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+
   }
   
   /* Список email */
@@ -70,7 +72,27 @@ body {
     margin-right: 10px;
     cursor: pointer;
   }
-  
+  .AdminEmail__action-panel{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+
+  }
+  .AdminEmail__action-panel textarea {
+    text-align: center;
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    resize: none;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+   
+  }
   /* Кнопки в списку */
   .AdminEmail__actions button {
     margin-left: 10px;
@@ -118,6 +140,27 @@ body {
     border: 1px solid #ddd;
     border-radius: 4px;
   }
+  .AdminEmail__controls{
+    display: flex;
+    justify-content: space-evenly;
+    width: 50%;
+    margin-top: 20px;
+
+
+  }
+  .AdminEmail__controls button{
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #ffffff;
+    transition: background-color 0.3s;
+  }
+  .AdminEmail__controls button:hover{
+    background-color: #0056b3;
+  }
 /* 
   .AdminEmail__action-panel select {
     width: 100%;
@@ -157,3 +200,38 @@ body {
     border: 1px solid #ddd;
     border-radius: 4px;
   } */
+
+
+
+  .AdminEmail__pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.AdminEmail__pagination button {
+    padding: 8px 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.AdminEmail__pagination button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.AdminEmail__pagination span {
+    font-size: 16px;
+    color: #333;
+}
+
+
+
+
