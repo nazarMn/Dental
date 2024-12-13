@@ -6,16 +6,18 @@ const AdminProfessionals = () => {
   const [specialty, setSpecialty] = useState('');
   const [photo, setPhoto] = useState(null);
   const [doctors, setDoctors] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const doctorsPerPage = 3;
 
-  // Завантаження всіх лікарів
+  // Fetch all doctors
   useEffect(() => {
     fetch('http://localhost:3000/doctors')
       .then((response) => response.json())
       .then((data) => setDoctors(data))
-      .catch((err) => console.error('Помилка при отриманні лікарів:', err));
+      .catch((err) => console.error('Error fetching doctors:', err));
   }, []);
 
-  // Обробка форми
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -34,7 +36,7 @@ const AdminProfessionals = () => {
         if (response.ok) {
           return response.json();
         }
-        throw new Error('Помилка при збереженні лікаря');
+        throw new Error('Error saving doctor');
       })
       .then((data) => {
         console.log(data.message);
@@ -46,50 +48,101 @@ const AdminProfessionals = () => {
       .catch((err) => console.error(err));
   };
 
+  const deleteDoctor = (index) => {
+    const doctorToDelete = doctors[index];
+    fetch(`http://localhost:3000/delete-doctor/${doctorToDelete._id}`, {
+      method: 'DELETE',
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Error deleting doctor');
+        }
+        setDoctors(doctors.filter((_, i) => i !== index));
+      })
+      .catch((err) => console.error(err));
+  };
+
+  const totalPages = Math.ceil(doctors.length / doctorsPerPage);
+  const startIndex = (currentPage - 1) * doctorsPerPage;
+  const currentDoctors = doctors.slice(startIndex, startIndex + doctorsPerPage);
+
+  const goToNextPage = () => {
+    if (currentPage < totalPages) setCurrentPage((prev) => prev + 1);
+  };
+
+  const goToPrevPage = () => {
+    if (currentPage > 1) setCurrentPage((prev) => prev - 1);
+  };
+
   return (
     <div className="adminProfessionals">
-      <h2>Додати лікаря</h2>
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <input
-          type="text"
-          placeholder="Ім'я"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Спеціальність"
-          value={specialty}
-          onChange={(e) => setSpecialty(e.target.value)}
-          required
-        />
-        <input
-          type="file"
-          accept="image/*"
-          onChange={(e) => setPhoto(e.target.files[0])}
-          required
-        />
-        <button type="submit">Додати лікаря</button>
-      </form>
+      <div className="adminProfessionalsHeader">
+        <h2>Manage Doctors</h2>
+      </div>
+      <div className="adminProfessionalsForm">
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
+          <input
+            type="text"
+            placeholder="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+          <input
+            type="text"
+            placeholder="Specialty"
+            value={specialty}
+            onChange={(e) => setSpecialty(e.target.value)}
+            required
+          />
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => setPhoto(e.target.files[0])}
+            required
+          />
+          <button type="submit">Add Doctor</button>
+        </form>
+      </div>
 
-      <h3>Список лікарів</h3> 
-      
-      <ul>
-        {doctors.map((doctor, index) => (
-          <li key={index}>
-            <img
-              src={`http://localhost:3000${doctor.photo}`}
-              alt={doctor.name}
-              width="50"
-              height="50"
-            />
-            
-            <p>{doctor.name}</p>
-            <p>{doctor.specialty}</p>
-          </li>
-        ))}
-      </ul>
+      <div className="adminProfessionalsList">
+        <h3>Doctors List</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Photo</th>
+              <th>Name</th>
+              <th>Specialty</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {currentDoctors.map((doctor, index) => (
+              <tr key={index}>
+                <td>
+                  <img
+                    src={`http://localhost:3000${doctor.photo}`}
+                    alt={doctor.name}
+                    width="50"
+                    height="50"
+                    className="doctorPhoto"
+                  />
+                </td>
+                <td>{doctor.name}</td>
+                <td>{doctor.specialty}</td>
+                <td>
+                  <button onClick={() => deleteDoctor(startIndex + index)}>Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <div className="pagination">
+          <button onClick={goToPrevPage} disabled={currentPage === 1}>Previous</button>
+          <span>{`${currentPage} of ${totalPages}`}</span>
+          <button onClick={goToNextPage} disabled={currentPage === totalPages}>Next</button>
+        </div>
+      </div>
     </div>
   );
 };

@@ -119,7 +119,24 @@ app.delete('/appointments/:id', (req, res) => {
 });
 
 
-
+// Маршрут для видалення лікаря
+app.delete('/delete-doctor/:id', (req, res) => {
+    const doctorId = req.params.id;
+  
+    Doctor.findByIdAndDelete(doctorId)
+      .then((result) => {
+        if (result) {
+          res.status(200).json({ message: 'Лікаря успішно видалено' });
+        } else {
+          res.status(404).json({ message: 'Лікаря не знайдено' });
+        }
+      })
+      .catch((err) => {
+        console.error('Error deleting doctor:', err);
+        res.status(500).json({ message: 'Помилка сервера під час видалення лікаря' });
+      });
+  });
+  
 
 
 
@@ -205,23 +222,29 @@ const storage = multer.diskStorage({
   
   const Doctor = mongoose.model('Doctor', doctorSchema);
   
-  // Маршрут для збереження лікаря з фото
   app.post('/add-doctor', upload.single('photo'), (req, res) => {
     const { name, specialty } = req.body;
-    const photo = req.file ? `/uploads/${req.file.filename}` : null;
+  
+    // Перевірка, чи файл було завантажено
+    if (!req.file) {
+      return res.status(400).json({ message: 'Фото є обов’язковим' });
+    }
+  
+    const photo = `/uploads/${req.file.filename}`;
   
     const newDoctor = new Doctor({ name, specialty, photo });
   
     newDoctor
       .save()
       .then(() => {
-        res.status(201).json({ message: 'Лікаря збережено успішно' });
+        res.status(201).json({ message: 'Лікаря збережено успішно', photo });
       })
       .catch((err) => {
         console.error('Не вдалося зберегти лікаря:', err);
         res.status(500).json({ message: 'Не вдалося зберегти лікаря' });
       });
   });
+  
   
   // Маршрут для отримання всіх лікарів
   app.get('/doctors', (req, res) => {
@@ -292,6 +315,42 @@ app.get('/doctors', (req, res) => {
 //         res.status(500).json({ message: 'Не вдалося надіслати email.' });
 //     }
 // });
+
+
+
+
+
+
+const transporter = nodemailer.createTransport({
+    service: 'gmail', // Можна використовувати інші сервіси, як-от Yahoo, Outlook
+    auth: {
+        user: 'nazarmn2008@gmail.com', // Ваш email
+        pass: 'nnub rdtb nxsj bzdj ', // Пароль або "App Password" (для Gmail)
+    },
+});
+
+app.post('/send-emails', (req, res) => {
+    const { recipients, text } = req.body;
+
+    if (!recipients || !text) {
+        return res.status(400).json({ message: 'Вкажіть отримувачів та текст' });
+    }
+
+    const mailOptions = {
+        from: 'nazarmn2008@gmail.com',
+        to: recipients.join(','),
+        subject: 'Розсилка',
+        text,
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.error('Помилка при надсиланні:', error);
+            return res.status(500).json({ message: 'Не вдалося надіслати розсилку' });
+        }
+        res.json({ message: 'Розсилку надіслано!' });
+    });
+});
 
   
 // Маршрут для обслуговування фронтенду

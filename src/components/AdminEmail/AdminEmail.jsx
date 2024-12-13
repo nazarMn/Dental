@@ -3,17 +3,32 @@ import './AdminEmail.css';
 
 const AdminEmail = () => {
     const [emails, setEmails] = useState([]);
+    const [filteredEmails, setFilteredEmails] = useState([]);
     const [selectedEmails, setSelectedEmails] = useState([]);
     const [emailText, setEmailText] = useState('');
+    const [searchQuery, setSearchQuery] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
-    const emailsPerPage = 15; // Кількість email на сторінці
+    const emailsPerPage = 5; // Кількість email на сторінці
 
     useEffect(() => {
         fetch('http://localhost:3000/emails')
             .then((response) => response.json())
-            .then((data) => setEmails(data))
+            .then((data) => {
+                const validEmails = data.filter((email) => email && email.email); // Фільтруємо тільки об'єкти з email
+                setEmails(validEmails);
+                setFilteredEmails(validEmails);
+            })
             .catch((err) => console.error('Не вдалося отримати email:', err));
     }, []);
+
+    useEffect(() => {
+        const lowercasedQuery = searchQuery.toLowerCase();
+        const filtered = emails.filter((email) =>
+            email.email.toLowerCase().includes(lowercasedQuery)
+        );
+        setFilteredEmails(filtered);
+        setCurrentPage(1); // Скидаємо на першу сторінку при новому пошуку
+    }, [searchQuery, emails]);
 
     const toggleEmailSelection = (email) => {
         setSelectedEmails((prev) =>
@@ -25,7 +40,7 @@ const AdminEmail = () => {
 
     const selectAllEmails = () => {
         const startIndex = (currentPage - 1) * emailsPerPage;
-        const pageEmails = emails.slice(startIndex, startIndex + emailsPerPage);
+        const pageEmails = filteredEmails.slice(startIndex, startIndex + emailsPerPage);
         setSelectedEmails(pageEmails.map((email) => email.email));
     };
 
@@ -63,9 +78,9 @@ const AdminEmail = () => {
             });
     };
 
-    const totalPages = Math.ceil(emails.length / emailsPerPage);
+    const totalPages = Math.ceil(filteredEmails.length / emailsPerPage);
     const startIndex = (currentPage - 1) * emailsPerPage;
-    const currentEmails = emails.slice(startIndex, startIndex + emailsPerPage);
+    const currentEmails = filteredEmails.slice(startIndex, startIndex + emailsPerPage);
 
     const goToNextPage = () => {
         if (currentPage < totalPages) setCurrentPage((prev) => prev + 1);
@@ -87,24 +102,42 @@ const AdminEmail = () => {
                 <button onClick={handleSendEmails}>Надіслати</button>
             </div>
 
+            <input
+                type="text"
+                placeholder="Пошук email"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="AdminEmail__search"
+            />
+
             <div className="AdminEmail__controls">
                 <button onClick={selectAllEmails}>Вибрати всі</button>
                 <button onClick={deselectAllEmails}>Скасувати вибір</button>
             </div>
 
             <div className="AdminEmail__list-container">
-                <ul>
-                    {currentEmails.map((email, index) => (
-                        <li key={index}>
-                            <input
-                                type="checkbox"
-                                checked={selectedEmails.includes(email.email)}
-                                onChange={() => toggleEmailSelection(email.email)}
-                            />
-                            {email.email}
-                        </li>
-                    ))}
-                </ul>
+                <table className="AdminEmail__table">
+                    <thead>
+                        <tr>
+                            <th>Вибір</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {currentEmails.map((email, index) => (
+                            <tr key={index}>
+                                <td>
+                                    <input
+                                        type="checkbox"
+                                        checked={selectedEmails.includes(email.email)}
+                                        onChange={() => toggleEmailSelection(email.email)}
+                                    />
+                                </td>
+                                <td>{email.email}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
 
             <div className="AdminEmail__pagination">
