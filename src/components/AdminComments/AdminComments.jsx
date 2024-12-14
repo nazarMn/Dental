@@ -54,6 +54,10 @@ const AdminComments = () => {
     fetchComments();
   }, []);
 
+
+
+  
+
   return (
     <div className="adminComments">
       <div className="adminCommentsLeft">
@@ -114,7 +118,18 @@ const AdminComments = () => {
                 <img key={`empty-${index}`} src={star} alt="empty star" className="empty" />
               ))}
             </div>
+       
           </div>
+
+          <div className="reviewsCardBottom">
+                <button
+        className="deleteCommentButton"
+        onClick={() => deleteComment(comment.id)}
+      >
+        Delete
+      </button>
+          </div>
+
         </div>
       </SwiperSlide>
     );

@@ -8,13 +8,13 @@ const AdminEmail = () => {
     const [emailText, setEmailText] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
-    const emailsPerPage = 5; // Кількість email на сторінці
+    const emailsPerPage = 5;
 
     useEffect(() => {
         fetch('http://localhost:3000/emails')
             .then((response) => response.json())
             .then((data) => {
-                const validEmails = data.filter((email) => email && email.email); // Фільтруємо тільки об'єкти з email
+                const validEmails = data.filter((email) => email && email.email);
                 setEmails(validEmails);
                 setFilteredEmails(validEmails);
             })
@@ -27,7 +27,7 @@ const AdminEmail = () => {
             email.email.toLowerCase().includes(lowercasedQuery)
         );
         setFilteredEmails(filtered);
-        setCurrentPage(1); // Скидаємо на першу сторінку при новому пошуку
+        setCurrentPage(1);
     }, [searchQuery, emails]);
 
     const toggleEmailSelection = (email) => {
@@ -47,6 +47,29 @@ const AdminEmail = () => {
     const deselectAllEmails = () => {
         setSelectedEmails([]);
     };
+
+    const handleDeleteEmail = (emailToDelete) => {
+        if (window.confirm('Ви впевнені, що хочете видалити цей email?')) {
+            fetch(`http://localhost:3000/emails/${emailToDelete}`, {
+                method: 'DELETE',
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        setEmails((prev) =>
+                            prev.filter((email) => email.email !== emailToDelete)
+                        );
+                        alert('Email видалено успішно');
+                    } else {
+                        alert('Не вдалося видалити email');
+                    }
+                })
+                .catch((err) => {
+                    console.error('Помилка при видаленні:', err);
+                    alert('Не вдалося видалити email');
+                });
+        }
+    };
+    
 
     const handleSendEmails = () => {
         if (selectedEmails.length === 0) {
@@ -121,6 +144,7 @@ const AdminEmail = () => {
                         <tr>
                             <th>Вибір</th>
                             <th>Email</th>
+                            <th>Дії</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -134,6 +158,13 @@ const AdminEmail = () => {
                                     />
                                 </td>
                                 <td>{email.email}</td>
+                                <td>
+                                    <button
+                                        onClick={() => handleDeleteEmail(email.email)}
+                                    >
+                                        Видалити
+                                    </button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>

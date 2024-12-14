@@ -77,6 +77,11 @@ app.post('/send-comment', (req, res) => {
 })
 
 
+
+
+
+
+
 // Маршрут для збереження даних запису на прийом
 app.post('/send-appointment', (req, res) => {
     const { name, gender, phone, email, department, date, details } = req.body;
@@ -275,47 +280,24 @@ app.get('/doctors', (req, res) => {
         res.status(500).json({ message: 'Не вдалося отримати лікарів' });
       });
   });
-  
 
 
 
 
 
-//   const transporter = nodemailer.createTransport({
-//     service: 'Gmail',
-//     auth: {
-//         user: process.env.EMAIL_USER, // Ваш email (наприклад, your-email@gmail.com)
-//         pass: process.env.EMAIL_PASS, // Ваш пароль або App Password
-//     },
-// });
 
-// // Маршрут для надсилання email
-// app.post('/send-emails', async (req, res) => {
-//     const { recipients, text } = req.body; // Отримуємо отримувачів та текст повідомлення з тіла запиту
+  app.delete('/emails/:email', (req, res) => {
+    const emailToDelete = req.params.email;
 
-//     // Перевірка на наявність отримувачів та тексту
-//     if (!recipients || !recipients.length || !text) {
-//         return res.status(400).json({ message: 'Вкажіть отримувачів і текст.' });
-//     }
-
-//     try {
-//         // Опції для відправки email
-//         const emailOptions = {
-//             from: process.env.EMAIL_USER,  // Відправник (ваш email)
-//             to: recipients.join(', '),     // Отримувачі
-//             subject: 'Розсилка повідомлення', // Тема листа
-//             text,                          // Текст повідомлення
-//         };
-
-//         // Відправка листа
-//         await transporter.sendMail(emailOptions);
-//         res.status(200).json({ message: 'Email успішно надіслано!' });
-//     } catch (err) {
-//         console.error('Помилка при надсиланні email:', err);
-//         res.status(500).json({ message: 'Не вдалося надіслати email.' });
-//     }
-// });
-
+    Email.findOneAndDelete({ email: emailToDelete })
+        .then(() => {
+            res.status(200).json({ message: 'Email видалено успішно' });
+        })
+        .catch((err) => {
+            console.error('Не вдалося видалити email:', err);
+            res.status(500).json({ message: 'Не вдалося видалити email' });
+        });
+});
 
 
 
@@ -324,8 +306,8 @@ app.get('/doctors', (req, res) => {
 const transporter = nodemailer.createTransport({
     service: 'gmail', // Можна використовувати інші сервіси, як-от Yahoo, Outlook
     auth: {
-        user: 'nazarmn2008@gmail.com', // Ваш email
-        pass: 'nnub rdtb nxsj bzdj ', // Пароль або "App Password" (для Gmail)
+         user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
     },
 });
 
