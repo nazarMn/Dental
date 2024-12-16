@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import './Header.css'
 
+import RegistrationPopup from "../RegistrationPopup/RegistrationPopup";
+
 const Header = () => {
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+    const togglePopup = () => {
+        setIsPopupOpen(!isPopupOpen);
+    };
     return (
         <div className="header">
             <div className="logo">
@@ -23,8 +30,9 @@ Dental
 </nav>
 <div className="headerBtn">
     <button className="loginBtn">Log in</button>
-    <button className="signupBtn">Sign up</button>
+    <button className="signupBtn" onClick={togglePopup}>Sign up</button>
 </div>
+{isPopupOpen && <RegistrationPopup closePopup={togglePopup} />}
         </div>
     )
 }
