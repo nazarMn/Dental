@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import './RegistrationPopup.css';
+import './LoginPopup.css';
 
-const RegistrationPopup = () => {
+const LoginPopup = () => {
     const [isVisible, setIsVisible] = useState(true);
 
     const closePopup = () => {
@@ -9,22 +9,18 @@ const RegistrationPopup = () => {
     };
 
     if (!isVisible) {
-        return null; // Do not render the popup if it's not visible
+        return null;
     }
 
     return (
-        <div className="registrationPopup">
+        <div className="loginPopup">
             <div className="popupContainer">
                 <button className="closeButton" onClick={closePopup}>×</button>
                 <h1>Register</h1>
                 <form>
                     <div className="inputGroup">
-                        <input type="text" placeholder="Name" required />
-                        <input type="text" placeholder="Surname" />
-                    </div>
-
-                    <div className="inputGroup">
-                        <input type="email" placeholder="Email" required />
+                        <input type="text" placeholder="Name and email" required />
+                        
                     </div>
                     <div className="inputGroup">
                         <input type="password" placeholder="Password" required />
@@ -36,4 +32,4 @@ const RegistrationPopup = () => {
     );
 };
 
-export default RegistrationPopup;
+export default LoginPopup;
