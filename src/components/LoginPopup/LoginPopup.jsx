@@ -1,22 +1,14 @@
 import React, { useState } from "react";
 import './LoginPopup.css';
 
-const LoginPopup = () => {
-    const [isVisible, setIsVisible] = useState(true);
-
-    const closePopup = () => {
-        setIsVisible(false);
-    };
-
-    if (!isVisible) {
-        return null;
-    }
-
+const LoginPopup = ({ closePopup }) => {
+    
+   
     return (
         <div className="loginPopup">
             <div className="popupContainer">
                 <button className="closeButton" onClick={closePopup}>×</button>
-                <h1>Register</h1>
+                <h1>Login</h1>
                 <form>
                     <div className="inputGroup">
                         <input type="text" placeholder="Name and email" required />
@@ -25,7 +17,7 @@ const LoginPopup = () => {
                     <div className="inputGroup">
                         <input type="password" placeholder="Password" required />
                     </div>
-                    <button className="registerButton">Register</button>
+                    <button className="registerButton">Login</button>
                 </form>
             </div>
         </div>

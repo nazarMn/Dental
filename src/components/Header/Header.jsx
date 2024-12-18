@@ -2,13 +2,27 @@ import React, { useState } from "react";
 import './Header.css'
 
 import RegistrationPopup from "../RegistrationPopup/RegistrationPopup";
+import LoginPopup from "../LoginPopup/LoginPopup";
 
 const Header = () => {
-    const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [isRegistrationPopupOpen, setIsRegistrationPopupOpen] = useState(false);
+    const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
 
-    const togglePopup = () => {
-        setIsPopupOpen(!isPopupOpen);
+    const openRegistrationPopup = () => {
+        setIsRegistrationPopupOpen(true);
+        setIsLoginPopupOpen(false); // Закрити LoginPopup, якщо він відкритий
     };
+
+    const openLoginPopup = () => {
+        setIsLoginPopupOpen(true);
+        setIsRegistrationPopupOpen(false); // Закрити RegistrationPopup, якщо він відкритий
+    };
+
+    const closeAllPopups = () => {
+        setIsRegistrationPopupOpen(false);
+        setIsLoginPopupOpen(false);
+    };
+
     return (
         <div className="header">
             <div className="logo">
@@ -29,10 +43,12 @@ Dental
     </ul>
 </nav>
 <div className="headerBtn">
-    <button className="loginBtn">Log in</button>
-    <button className="signupBtn" onClick={togglePopup}>Sign up</button>
+<button className="loginBtn" onClick={openLoginPopup}>Log in</button>
+<button className="signupBtn" onClick={openRegistrationPopup}>Sign up</button>
 </div>
-{isPopupOpen && <RegistrationPopup closePopup={togglePopup} />}
+{isRegistrationPopupOpen && <RegistrationPopup closePopup={closeAllPopups} />}
+{isLoginPopupOpen && <LoginPopup closePopup={closeAllPopups} />}
+
         </div>
     )
 }

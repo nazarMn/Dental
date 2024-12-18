@@ -1,16 +1,7 @@
 import React, { useState } from "react";
 import './RegistrationPopup.css';
 
-const RegistrationPopup = () => {
-    const [isVisible, setIsVisible] = useState(true);
-
-    const closePopup = () => {
-        setIsVisible(false);
-    };
-
-    if (!isVisible) {
-        return null; // Do not render the popup if it's not visible
-    }
+const RegistrationPopup =  ({ closePopup }) => {
 
     return (
         <div className="registrationPopup">
