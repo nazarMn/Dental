@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const multer = require('multer');
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
+const bcrypt = require('bcrypt');
 
 // Підключення до MongoDB
 mongoose.connect('mongodb+srv://admin:C0Urzbr1pymwOgsK@admin.i6lpg.mongodb.net/?retryWrites=true&w=majority&appName=admin', {
@@ -333,6 +334,76 @@ app.post('/send-emails', (req, res) => {
         res.json({ message: 'Розсилку надіслано!' });
     });
 });
+
+
+
+
+
+
+
+
+
+
+const userSchema = new mongoose.Schema({
+    name: { type: String, required: true },
+    surname: { type: String },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+});
+
+const User = mongoose.model('User', userSchema);
+
+
+
+
+
+// Маршрут для реєстрації
+app.post('/register', async (req, res) => {
+    const { name, surname, email, password } = req.body;
+
+    if (!name || !email || !password) {
+        return res.status(400).json({ message: 'Будь ласка, заповніть усі обов’язкові поля' });
+    }
+
+    try {
+        // Перевірка, чи email вже існує
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(400).json({ message: 'Користувач з таким email вже існує' });
+        }
+
+        // Хешування пароля
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        // Створення нового користувача
+        const newUser = new User({
+            name,
+            surname,
+            email,
+            password: hashedPassword,
+        });
+
+        await newUser.save();
+        res.status(201).json({ message: 'Реєстрація успішна' });
+    } catch (error) {
+        console.error('Помилка реєстрації:', error);
+        res.status(500).json({ message: 'Сталася помилка при реєстрації' });
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   
 // Маршрут для обслуговування фронтенду
