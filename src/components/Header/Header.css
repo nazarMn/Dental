@@ -13,6 +13,7 @@
     margin-top: 24px;
     padding-left: 19.27%;
     padding-right: 19.27%;
+    z-index: 9999;
 }
 .logo{
     width: 12.25%;
@@ -59,6 +60,7 @@ ul li a:hover{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    z-index: 9999;
 }
 .headerBtn button{
     width: 140px;
@@ -77,6 +79,7 @@ ul li a:hover{
     color: #49B3FB;
     z-index: 100;
     cursor: pointer;
+    z-index: 9999;
 }
 .signupBtn{
     border: none;
@@ -84,6 +87,7 @@ ul li a:hover{
     color: #fff;
     z-index: 100;
     cursor: pointer;
+    z-index: 9999;
 }
 .loginBtn:hover{
     background-color: #49B3FB;
@@ -99,4 +103,131 @@ ul li a:hover{
     transition: 0.3s;
     box-shadow: 0px 8px 8px 4px rgba(3, 17, 38, 0.087);
 
+}
+
+
+
+
+
+
+.userInfo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 250px;
+    height: 70px;
+    padding: 10px 20px;
+    background-color: #49B3FB;
+    border-radius: 15px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    box-shadow: 0px 8px 16px rgba(3, 17, 38, 0.1);
+    z-index: 9999;
+}
+
+.userInfo p {
+    margin: 0;
+}
+
+.logoutBtn {
+    margin-left: 10px;
+    padding: 10px 20px;
+    background-color: #fff;
+    color: #49B3FB;
+    border: 1px solid #49B3FB;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 9999;
+}
+
+.logoutBtn:hover {
+    background-color: #49B3FB;
+    color: #fff;
+    box-shadow: 0px 8px 8px rgba(3, 17, 38, 0.1);
+}
+
+
+
+
+
+
+.profilePic {
+    width: 95%;
+    
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
+    z-index: 9999;
+}
+.settingsBtn {
+    margin-left: 10px;
+    padding: 10px 20px;
+    background-color: #fff;
+    color: #49B3FB;
+    border: 1px solid #49B3FB;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 9999;
+}
+
+.settingsBtn:hover {
+    background-color: #0379bf;
+}
+
+
+
+
+
+
+
+/* Випадаюча шторка */
+.dropdown {
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+}
+
+.dropdown button {
+    background: none;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+}
+
+.dropdown button:hover {
+    background-color: #031126;
+}
+
+/* Іконка акаунта */
+.profilePic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #49B3FB;
+    object-fit: cover;
+}
+
+.profilePic:hover {
+    border-color: #004AAD;
+    transition: 0.3s;
 }
