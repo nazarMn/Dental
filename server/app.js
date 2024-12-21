@@ -342,13 +342,12 @@ app.post('/send-emails', (req, res) => {
 
 
 
-
-
 const userSchema = new mongoose.Schema({
     name: { type: String, required: true },
     surname: { type: String },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
+    photo: { type: String, default: '/uploads/default.png' }, // Додано поле для фото
 });
 
 const User = mongoose.model('User', userSchema);
@@ -356,9 +355,7 @@ const User = mongoose.model('User', userSchema);
 
 
 
-
-// Маршрут для реєстрації
-app.post('/register', async (req, res) => {
+app.post('/register', upload.single('photo'), async (req, res) => {
     const { name, surname, email, password } = req.body;
 
     if (!name || !email || !password) {
@@ -366,21 +363,21 @@ app.post('/register', async (req, res) => {
     }
 
     try {
-        // Перевірка, чи email вже існує
         const existingUser = await User.findOne({ email });
         if (existingUser) {
             return res.status(400).json({ message: 'Користувач з таким email вже існує' });
         }
 
-        // Хешування пароля
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // Створення нового користувача
+        const photo = req.file ? `/uploads/${req.file.filename}` : '/uploads/default.png';
+
         const newUser = new User({
             name,
             surname,
             email,
             password: hashedPassword,
+            photo,
         });
 
         await newUser.save();
@@ -391,8 +388,8 @@ app.post('/register', async (req, res) => {
     }
 });
 
-
-
+// Додатково, додайте статичний сервіс для обслуговування папки uploads
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
 

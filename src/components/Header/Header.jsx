@@ -9,13 +9,13 @@ const Header = () => {
     const [isRegistrationPopupOpen, setIsRegistrationPopupOpen] = useState(false);
     const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
     const [isSettingsPopupOpen, setIsSettingsPopupOpen] = useState(false);
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Випадаюча шторка
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [user, setUser] = useState(null);
 
     const handleLogout = () => {
         setUser(null);
-        localStorage.removeItem("user");
-        setIsDropdownOpen(false); // Закрити випадаючу шторку після виходу
+        localStorage.removeItem("userId");
+        setIsDropdownOpen(false);
     };
 
     const closeAllPopups = () => {
@@ -26,21 +26,32 @@ const Header = () => {
     };
 
     useEffect(() => {
-        const savedUser = JSON.parse(localStorage.getItem("user"));
-        if (savedUser) {
-            setUser(savedUser);
-        }
+        const fetchUserData = async () => {
+            try {
+                const userId = localStorage.getItem("userId");
+                if (userId) {
+                    const response = await fetch(`/user/${userId}`);
+                    if (!response.ok) throw new Error("Failed to fetch user data");
+                    const userData = await response.json();
+                    setUser(userData);
+                }
+            } catch (error) {
+                console.error("Error fetching user data:", error);
+            }
+        };
+
+        fetchUserData();
     }, []);
 
     const handleLoginSuccess = (loggedInUser) => {
         setUser(loggedInUser);
-        localStorage.setItem("user", JSON.stringify(loggedInUser));
+        localStorage.setItem("userId", loggedInUser._id);
         closeAllPopups();
     };
 
     const handleSaveSettings = (updatedUser) => {
         setUser(updatedUser);
-        localStorage.setItem("user", JSON.stringify(updatedUser));
+        localStorage.setItem("userId", updatedUser._id);
     };
 
     return (
@@ -60,10 +71,10 @@ const Header = () => {
                 {user ? (
                     <div className="userInfo">
                         <img
-                            src={user.photo || people3}
+                            src={user.photo ? `/uploads/${user.photo}` : people3}
                             alt="Profile"
                             className="profilePic"
-                            onClick={() => setIsDropdownOpen(!isDropdownOpen)} // Відкрити/закрити шторку
+                            onClick={() => setIsDropdownOpen(!isDropdownOpen)} 
                         />
                         <h3>{user.name}</h3>
                         {isDropdownOpen && (
@@ -72,7 +83,7 @@ const Header = () => {
                                     className="settingsBtn"
                                     onClick={() => {
                                         setIsSettingsPopupOpen(true);
-                                        setIsDropdownOpen(false); // Закрити шторку
+                                        setIsDropdownOpen(false); 
                                     }}
                                 >
                                     Settings

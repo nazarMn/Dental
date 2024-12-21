@@ -1,3 +1,4 @@
+// Frontend: RegistrationPopup.js
 import React, { useState } from "react";
 import './RegistrationPopup.css';
 
@@ -7,6 +8,7 @@ const RegistrationPopup = ({ closePopup }) => {
         surname: '',
         email: '',
         password: '',
+        photo: null, // додано поле для фото
     });
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
@@ -16,22 +18,34 @@ const RegistrationPopup = ({ closePopup }) => {
         setFormData({ ...formData, [name]: value });
     };
 
+    const handleFileChange = (e) => {
+        setFormData({ ...formData, photo: e.target.files[0] });
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
         setSuccess('');
 
+        const formDataToSend = new FormData();
+        formDataToSend.append('name', formData.name);
+        formDataToSend.append('surname', formData.surname);
+        formDataToSend.append('email', formData.email);
+        formDataToSend.append('password', formData.password);
+        if (formData.photo) {
+            formDataToSend.append('photo', formData.photo);
+        }
+
         try {
             const response = await fetch('/register', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData),
+                body: formDataToSend,
             });
 
             const data = await response.json();
             if (response.ok) {
                 setSuccess(data.message);
-                setFormData({ name: '', surname: '', email: '', password: '' });
+                setFormData({ name: '', surname: '', email: '', password: '', photo: null });
             } else {
                 setError(data.message);
             }
@@ -84,6 +98,14 @@ const RegistrationPopup = ({ closePopup }) => {
                             value={formData.password}
                             onChange={handleInputChange}
                             required
+                        />
+                    </div>
+                    <div className="inputGroup">
+                        <input
+                            type="file"
+                            name="photo"
+                            onChange={handleFileChange}
+                            accept="image/*"
                         />
                     </div>
                     <button className="registerButton">Register</button>
