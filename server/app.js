@@ -347,7 +347,7 @@ const userSchema = new mongoose.Schema({
     surname: { type: String },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    photo: { type: String, default: '/uploads/default.png' }, // Додано поле для фото
+    photo: { type: String, default: '/uploads/default.png' }, 
 });
 
 const User = mongoose.model('User', userSchema);
@@ -388,7 +388,6 @@ app.post('/register', upload.single('photo'), async (req, res) => {
     }
 });
 
-// Додатково, додайте статичний сервіс для обслуговування папки uploads
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
